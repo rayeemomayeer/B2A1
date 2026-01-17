@@ -31,12 +31,12 @@ class Person {
     }
 }
 
-const filterByRating = (value: {title: string, rating: number}[]): {title: string, rating: number}[] => {
-    return value.filter(i => i.rating >= 4);
+const filterByRating = (items: {title: string, rating: number}[]): {title: string, rating: number}[] => {
+    return items.filter(item => item.rating >= 4);
 }
 
-const filterActiveUsers = (value: {id: number, name: string, email: string, isActive: boolean}[]): {id: number, name: string, email: string, isActive: boolean}[] => {
-    return value.filter(i => i.isActive === true);
+const filterActiveUsers = (users: {id: number, name: string, email: string, isActive: boolean}[]): {id: number, name: string, email: string, isActive: boolean}[] => {
+    return users.filter(user => user.isActive === true);
 }
 
 interface Book {
@@ -46,8 +46,8 @@ interface Book {
     isAvailable: boolean,
 }
 
-const printBookDetails = (value: Book) : void => {
-    return console.log(`Title: ${value.title}, Author: ${value.author}, Published: ${value.publishedYear}, Available: ${value.isAvailable? 'Yes' : 'No'}`)
+const printBookDetails = (book: Book) : void => {
+    return console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable? 'Yes' : 'No'}`)
 }
 
 const getUniqueValues = (arr1: (string | number)[], arr2: (string | number)[]) : (string | number)[] => {
@@ -67,9 +67,10 @@ const getUniqueValues = (arr1: (string | number)[], arr2: (string | number)[]) :
     return result;
 }
 
-const calculateTotalPrice = (value: {name: string, price: number, quantity: number, discount?: number}[]):number =>{
-    return value.reduce((total, product) => {
+const calculateTotalPrice = (products: {name: string, price: number, quantity: number, discount?: number}[]):number =>{
+    return products.reduce((total, product) => {
         const discountedPrice = product.discount? product.price - (product.price * (product.discount/100)) : product.price;
         return total + (discountedPrice * product.quantity);
     }, 0);
 }
+
